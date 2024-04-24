@@ -52,4 +52,10 @@ class FollowingFragment : Fragment() {
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
+
+    companion object {
+        const val ARG_TAB = "tab_name"
+        const val TAB_NEWS = "news"
+        const val TAB_BOOKMARK = "bookmark"
+    }
 }

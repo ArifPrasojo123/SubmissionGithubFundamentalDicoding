@@ -5,21 +5,18 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.dicoding.submissiongithub.R
 import com.dicoding.submissiongithub.data.response.DetailUserResponse
 import com.dicoding.submissiongithub.databinding.ActivityDetailBinding
 import com.dicoding.submissiongithub.adapter.SectionPageAdapter
-import com.dicoding.submissiongithub.adapter.UserAdapater
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
-    private lateinit var adapter: UserAdapater
 
     companion object {
         @StringRes

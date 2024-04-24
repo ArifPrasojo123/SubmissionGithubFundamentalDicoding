@@ -1,22 +1,16 @@
 package com.dicoding.submissiongithub.iu.main
 
-import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dicoding.submissiongithub.data.response.DetailUserResponse
 import com.dicoding.submissiongithub.data.retrofit.ApiConfig
-import com.dicoding.submissiongithub.database.FavoriteUser
-import com.dicoding.submissiongithub.repository.Repository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailViewModel (application: Application): ViewModel() {
-    private val mRepository: Repository = Repository(application)
-
-    fun getAllNotes(): LiveData<List<FavoriteUser>> = mRepository.getAllNotes()
+class DetailViewModel : ViewModel() {
 
     private val _detailUser = MutableLiveData<DetailUserResponse>()
     val detailUser: LiveData<DetailUserResponse> = _detailUser

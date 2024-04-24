@@ -2,16 +2,11 @@ package com.dicoding.submissiongithub.iu.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
-import android.widget.CompoundButton
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.submissiongithub.R
 import com.dicoding.submissiongithub.data.response.ItemsItem
 import com.dicoding.submissiongithub.databinding.ActivityMainBinding
 import com.dicoding.submissiongithub.adapter.UserAdapater
@@ -42,22 +37,6 @@ class MainActivity : AppCompatActivity() {
                 }
         }
 
-
-
-        binding.switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
-            if (isChecked) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                binding.switchTheme.isChecked = true
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                binding.switchTheme.isChecked = false
-            }
-        }
-
-        binding.switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
-            mainViewModel.saveThemeSetting(isChecked)
-        }
-
         supportActionBar?.hide()
 
 
@@ -74,20 +53,6 @@ class MainActivity : AppCompatActivity() {
             showLoading(it)
         }
 
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_setting -> {
-                rvReview.layoutManager = LinearLayoutManager(this)
-            }
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     private fun setUserData(consumerUser: List<ItemsItem>) {

@@ -88,6 +88,6 @@
         app:fabSize="normal"
         app:layout_anchor="@id/rvReview"
         app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@drawable/ic_add"/>
+        app:srcCompat="@drawable/ic_favoriteborder"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
