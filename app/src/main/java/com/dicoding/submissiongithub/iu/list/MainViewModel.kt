@@ -1,9 +1,11 @@
-package com.dicoding.submissiongithub.iu.main
+package com.dicoding.submissiongithub.iu.list
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import com.dicoding.submissiongithub.UserRepository
 import com.dicoding.submissiongithub.data.response.GithubResponse
 import com.dicoding.submissiongithub.data.response.ItemsItem
 import com.dicoding.submissiongithub.data.retrofit.ApiConfig
@@ -11,7 +13,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel : ViewModel() {
+class MainViewModel(private val repository: UserRepository) : ViewModel() {
 
     private val _listUser = MutableLiveData<List<ItemsItem>>()
     val listUser: LiveData<List<ItemsItem>> = _listUser
@@ -44,5 +46,9 @@ class MainViewModel : ViewModel() {
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })
+    }
+
+    fun getThemeSettings(): LiveData<Boolean> {
+        return repository.getThemeSettings().asLiveData()
     }
 }

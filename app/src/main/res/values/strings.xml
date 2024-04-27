@@ -4,11 +4,7 @@
     <string name="following">Following</string>
     <string name="followers">Followers</string>
     <string name="dark_mode">Dark Mode</string>
-    <string name="title">Judul</string>
-    <string name="description">Deskripsi</string>
     <string name="setting">Setting</string>
-    <string name="submit">Submit</string>
-    <string name="delete">Hapus</string>
-    <string name="date">Date</string>
+    <string name="favorite">Favorite</string>
 
 </resources>

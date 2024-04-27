@@ -6,16 +6,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
-@Entity (tableName = "favorite")
+@Entity
 @Parcelize
-class FavoriteUser (
-    @field:ColumnInfo(name = "username")
-    @field:PrimaryKey
+data class FavoriteUser (
+    @field:PrimaryKey(autoGenerate = false)
     val username: String = "",
-
-    @field:ColumnInfo(name = "avatarUrl")
-    var avatarUrl: String? = null,
-
-    @field:ColumnInfo(name = "bookmarked")
-    var isBookmarked: Boolean = false
+    var avatarUrl: String = "",
 ) : Parcelable

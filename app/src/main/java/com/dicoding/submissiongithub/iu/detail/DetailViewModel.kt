@@ -1,16 +1,20 @@
-package com.dicoding.submissiongithub.iu.main
+package com.dicoding.submissiongithub.iu.detail
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.dicoding.submissiongithub.UserRepository
 import com.dicoding.submissiongithub.data.response.DetailUserResponse
 import com.dicoding.submissiongithub.data.retrofit.ApiConfig
+import com.dicoding.submissiongithub.database.FavoriteUser
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailViewModel : ViewModel() {
+class DetailViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     private val _detailUser = MutableLiveData<DetailUserResponse>()
     val detailUser: LiveData<DetailUserResponse> = _detailUser
@@ -46,5 +50,28 @@ class DetailViewModel : ViewModel() {
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })
+    }
+
+    fun addFavoriteUser() {
+        viewModelScope.launch {
+            val user = FavoriteUser {
+                username = _detailUser.value?.login.toString(),
+                avatarUrl = _detailUser.value?.avatarUrl
+            }
+            userRepository.addFavorite(item =)
+        }
+    }
+    fun deleteFavoriteUser() {
+        viewModelScope.launch {
+            val user = FavoriteUser {
+                username = _detailUser.value?.login.toString(),
+                avatarUrl = _detailUser.value?.avatarUrl
+            }
+            userRepository.deleteFavorite(item = )
+        }
+    }
+
+    fun getFavoriteUserByUsername(username: String): LiveData<FavoriteUser>{
+        return userRepository.getFavoriteUserByusername(username)
     }
 }

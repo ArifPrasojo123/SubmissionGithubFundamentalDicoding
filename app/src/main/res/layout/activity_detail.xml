@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".iu.main.DetailActivity">
+    tools:context=".iu.detail.DetailActivity">
 
     <ImageView
         android:id="@+id/ivDetail"
@@ -88,6 +88,6 @@
         app:fabSize="normal"
         app:layout_anchor="@id/rvReview"
         app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@drawable/ic_favoriteborder"/>
+        app:srcCompat="@drawable/ic_favoriteborder" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

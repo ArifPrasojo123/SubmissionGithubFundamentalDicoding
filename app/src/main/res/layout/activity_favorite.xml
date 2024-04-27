@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".iu.detail.FollowersFragment">
+    tools:context=".iu.favorite.FavoriteActivity">
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -19,7 +19,7 @@
         tools:visibility="visible" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvFollo"
+        android:id="@+id/rvFavorite"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="16dp"

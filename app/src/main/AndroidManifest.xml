@@ -15,13 +15,19 @@
         android:theme="@style/Theme.SubmissionGithub"
         tools:targetApi="31">
         <activity
-            android:name=".iu.insert.AddUpdateActivity"
+            android:name=".iu.setting.SettingActivity"
             android:exported="false" />
         <activity
-            android:name=".iu.main.DetailActivity"
+            android:name=".iu.favorite.FavoriteActivity"
             android:exported="false" />
         <activity
-            android:name=".iu.main.MainActivity"
+            android:name=".iu.favorite.AddUpdateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".iu.detail.DetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".iu.list.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

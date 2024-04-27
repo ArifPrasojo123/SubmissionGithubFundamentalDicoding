@@ -1,11 +1,11 @@
-package com.dicoding.submissiongithub.adapter
+package com.dicoding.submissiongithub.iu.detail
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.dicoding.submissiongithub.iu.main.DetailActivity
-import com.dicoding.submissiongithub.iu.main.FollowersFragment
-import com.dicoding.submissiongithub.iu.main.FollowingFragment
+import com.dicoding.submissiongithub.iu.detail.DetailActivity
+import com.dicoding.submissiongithub.iu.detail.FollowersFragment
+import com.dicoding.submissiongithub.iu.detail.FollowingFragment
 
 class SectionPageAdapter (activity: DetailActivity, private val username: String) : FragmentStateAdapter(activity){
     override fun getItemCount(): Int {

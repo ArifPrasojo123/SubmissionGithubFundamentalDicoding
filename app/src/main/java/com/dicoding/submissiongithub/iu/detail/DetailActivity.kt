@@ -1,4 +1,4 @@
-package com.dicoding.submissiongithub.iu.main
+package com.dicoding.submissiongithub.iu.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,13 +10,18 @@ import com.bumptech.glide.Glide
 import com.dicoding.submissiongithub.R
 import com.dicoding.submissiongithub.data.response.DetailUserResponse
 import com.dicoding.submissiongithub.databinding.ActivityDetailBinding
-import com.dicoding.submissiongithub.adapter.SectionPageAdapter
+import com.dicoding.submissiongithub.iu.ViewModelFactory
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
+
+    private val viewModel by viewModels<DetailViewModel>(){
+        ViewModelFactory.getInstance(application)
+    }
+    private var favoriteStatus: Boolean = false
 
     companion object {
         @StringRes
@@ -31,8 +36,7 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val detailViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
-            DetailViewModel::class.java)
+        val detailViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(DetailViewModel::class.java)
 
         val username = intent.getStringExtra("username")
 
@@ -46,7 +50,6 @@ class DetailActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-
         detailViewModel.findDetailUser(username ?: "")
 
         detailViewModel.detailUser.observe(this) {detailUserRespone ->
@@ -55,6 +58,24 @@ class DetailActivity : AppCompatActivity() {
 
         detailViewModel.isLoading.observe(this) {
             showLoading(it)
+        }
+
+        binding.fabAdd.setOnClickListener {
+            if (favoriteStatus) {
+                detailViewModel.deleteFavoriteUser()
+            } else {
+                detailViewModel.addFavoriteUser()
+            }
+        }
+
+        detailViewModel.getFavoriteUserByUsername(username).observe(this){ favoriteuser ->
+            if (favoriteuser != null) {
+                binding.fabAdd.setImageResource(R.drawable.ic_favorite)
+                favoriteStatus = true
+            } else {
+                binding.fabAdd.setImageResource(R.drawable.ic_favoriteborder)
+                favoriteStatus = false
+            }
         }
     }
 
@@ -70,5 +91,10 @@ class DetailActivity : AppCompatActivity() {
 
     private fun showLoading(isLoading: Boolean) {
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun obtainViewModel(activity: AppCompatActivity): DetailViewModel {
+        val factory = ViewModelFactory.getInstance(activity.application)
+        return ViewModelProvider(activity, factory)[DetailViewModel::class.java]
     }
 }

@@ -1,4 +1,4 @@
-package com.dicoding.submissiongithub.iu.main
+package com.dicoding.submissiongithub.iu.detail
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -9,13 +9,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.submissiongithub.data.response.ItemsItem
 import com.dicoding.submissiongithub.databinding.FragmentFollowingBinding
-import com.dicoding.submissiongithub.adapter.UserAdapater
+import com.dicoding.submissiongithub.iu.ViewModelFactory
+import com.dicoding.submissiongithub.iu.list.UserAdapater
 
 class FollowingFragment : Fragment() {
 
     private lateinit var binding: FragmentFollowingBinding
 
     private lateinit var viewModel: FollowingViewModel
+
+    private val detailViewModel by viewModels<DetailViewModel>{
+        ViewModelFactory.getInstance(requireActivity())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,11 +56,5 @@ class FollowingFragment : Fragment() {
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-    }
-
-    companion object {
-        const val ARG_TAB = "tab_name"
-        const val TAB_NEWS = "news"
-        const val TAB_BOOKMARK = "bookmark"
     }
 }

@@ -1,4 +1,4 @@
-package com.dicoding.submissiongithub.adapter
+package com.dicoding.submissiongithub.iu.list
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -9,12 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.submissiongithub.data.response.ItemsItem
 import com.dicoding.submissiongithub.databinding.ItemUserBinding
-import com.dicoding.submissiongithub.iu.main.DetailActivity
+import com.dicoding.submissiongithub.iu.detail.DetailActivity
 
 class UserAdapater : ListAdapter<ItemsItem, UserAdapater.MyViewHolder>(DIFF_CALLBACK) {
     class MyViewHolder (val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(user: ItemsItem) {
-            binding.tvuser.text = "${user.login}\n-"
+            binding.tvuser.text = user.login
             Glide.with(binding.root.context)
                 .load(user.avatarUrl)
                 .into(binding.ivItem)

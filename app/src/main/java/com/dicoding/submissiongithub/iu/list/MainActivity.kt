@@ -1,20 +1,25 @@
-package com.dicoding.submissiongithub.iu.main
+package com.dicoding.submissiongithub.iu.list
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.submissiongithub.data.response.ItemsItem
 import com.dicoding.submissiongithub.databinding.ActivityMainBinding
-import com.dicoding.submissiongithub.adapter.UserAdapater
+import com.dicoding.submissiongithub.iu.ViewModelFactory
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    private val viewModel by viewModels<MainViewModel>(){
+        ViewModelFactory.getInstance(application)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +29,13 @@ class MainActivity : AppCompatActivity() {
         val mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
             MainViewModel::class.java)
 
+        mainViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
 
         with(binding){
             searchView.setupWithSearchBar(searchBar)
