@@ -3,6 +3,7 @@ package com.dicoding.submissiongithub.iu.detail
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
@@ -18,7 +19,7 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
 
-    private val viewModel by viewModels<DetailViewModel>(){
+    private val detailViewModel by viewModels<DetailViewModel>(){
         ViewModelFactory.getInstance(application)
     }
     private var favoriteStatus: Boolean = false
@@ -35,8 +36,6 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val detailViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(DetailViewModel::class.java)
 
         val username = intent.getStringExtra("username")
 
@@ -67,9 +66,10 @@ class DetailActivity : AppCompatActivity() {
                 detailViewModel.addFavoriteUser()
             }
         }
+        detailViewModel.getFavoriteUserByUsername(username?: "")
 
-        detailViewModel.getFavoriteUserByUsername(username).observe(this){ favoriteuser ->
-            if (favoriteuser != null) {
+        detailViewModel.isFavorite.observe(this){ favoriteuser ->
+            if (favoriteuser ) {
                 binding.fabAdd.setImageResource(R.drawable.ic_favorite)
                 favoriteStatus = true
             } else {

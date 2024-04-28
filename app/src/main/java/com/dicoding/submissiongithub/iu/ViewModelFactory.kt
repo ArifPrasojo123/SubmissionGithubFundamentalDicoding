@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.dicoding.submissiongithub.UserRepository
 import com.dicoding.submissiongithub.di.Injection
 import com.dicoding.submissiongithub.iu.detail.DetailViewModel
+import com.dicoding.submissiongithub.iu.detail.FollowersViewModel
+import com.dicoding.submissiongithub.iu.detail.FollowingViewModel
 import com.dicoding.submissiongithub.iu.favorite.FavoriteUserViewModel
 import com.dicoding.submissiongithub.iu.list.MainViewModel
 import com.dicoding.submissiongithub.iu.setting.SettingViewModel
@@ -36,6 +38,10 @@ class ViewModelFactory private constructor(private val userRepository: UserRepos
             return SettingViewModel(userRepository) as T
         } else if (modelClass.isAssignableFrom(FavoriteUserViewModel::class.java)) {
             return FavoriteUserViewModel(userRepository) as T
+        } else if (modelClass.isAssignableFrom(FollowersViewModel::class.java)) {
+            return FollowersViewModel(userRepository) as T
+        } else if (modelClass.isAssignableFrom(FollowingViewModel::class.java)) {
+            return FollowingViewModel(userRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
     }

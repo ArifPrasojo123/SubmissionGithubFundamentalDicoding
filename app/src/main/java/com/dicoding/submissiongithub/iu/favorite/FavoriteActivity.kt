@@ -2,6 +2,7 @@ package com.dicoding.submissiongithub.iu.favorite
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.submissiongithub.data.response.ItemsItem
 import com.dicoding.submissiongithub.database.FavoriteUser

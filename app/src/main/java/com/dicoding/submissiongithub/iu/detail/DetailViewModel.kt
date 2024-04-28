@@ -22,7 +22,11 @@ class DetailViewModel(private val userRepository: UserRepository) : ViewModel() 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    companion object{
+    private val _isFavorite = MutableLiveData<Boolean>()
+    val isFavorite: LiveData<Boolean> = _isFavorite
+
+
+    companion object {
         private const val TAG = "DetailViewModel"
     }
 
@@ -32,15 +36,15 @@ class DetailViewModel(private val userRepository: UserRepository) : ViewModel() 
         client.enqueue(object : Callback<DetailUserResponse> {
             override fun onResponse(
                 call: Call<DetailUserResponse>,
-                response: Response<DetailUserResponse>
+                response: Response<DetailUserResponse>,
             ) {
                 _isLoading.value = false
-                if (response.isSuccessful){
+                if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
                         _detailUser.value = response.body()
                     }
-                }else {
+                } else {
                     Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
@@ -54,24 +58,28 @@ class DetailViewModel(private val userRepository: UserRepository) : ViewModel() 
 
     fun addFavoriteUser() {
         viewModelScope.launch {
-            val user = FavoriteUser {
+            val user = FavoriteUser(
                 username = _detailUser.value?.login.toString(),
                 avatarUrl = _detailUser.value?.avatarUrl
-            }
-            userRepository.addFavorite(item =)
-        }
-    }
-    fun deleteFavoriteUser() {
-        viewModelScope.launch {
-            val user = FavoriteUser {
-                username = _detailUser.value?.login.toString(),
-                avatarUrl = _detailUser.value?.avatarUrl
-            }
-            userRepository.deleteFavorite(item = )
+            )
+            userRepository.addFavorite(item = user)
         }
     }
 
-    fun getFavoriteUserByUsername(username: String): LiveData<FavoriteUser>{
-        return userRepository.getFavoriteUserByusername(username)
+    fun deleteFavoriteUser() {
+        viewModelScope.launch {
+            val user = FavoriteUser(
+                username = _detailUser.value?.login.toString(),
+                avatarUrl = _detailUser.value?.avatarUrl
+            )
+            userRepository.deleteFavorite(item = user)
+        }
+    }
+
+    fun getFavoriteUserByUsername(username: String) {
+        viewModelScope.launch {
+            val mIsFavoriteUser = userRepository.getFavoriteUserByusername(username)
+            _isFavorite.postValue(mIsFavoriteUser)
+        }
     }
 }

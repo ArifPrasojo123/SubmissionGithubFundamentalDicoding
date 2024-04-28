@@ -11,5 +11,5 @@ import kotlinx.parcelize.Parcelize
 data class FavoriteUser (
     @field:PrimaryKey(autoGenerate = false)
     val username: String = "",
-    var avatarUrl: String = "",
+    var avatarUrl: String? = null,
 ) : Parcelable

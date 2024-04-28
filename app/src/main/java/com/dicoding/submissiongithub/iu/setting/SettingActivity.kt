@@ -3,6 +3,7 @@ package com.dicoding.submissiongithub.iu.setting
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.CompoundButton
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import com.dicoding.submissiongithub.R
 import com.dicoding.submissiongithub.iu.ViewModelFactory
