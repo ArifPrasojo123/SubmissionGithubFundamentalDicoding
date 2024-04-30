@@ -8,11 +8,12 @@
 
     <ImageView
         android:id="@+id/ivDetail"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars"/>
 
     <TextView
         android:id="@+id/tvUsername"
@@ -88,6 +89,6 @@
         app:fabSize="normal"
         app:layout_anchor="@id/rvReview"
         app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@drawable/ic_favoriteborder" />
+        app:srcCompat="@drawable/ic_favorite" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

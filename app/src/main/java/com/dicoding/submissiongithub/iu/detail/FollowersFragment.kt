@@ -17,9 +17,7 @@ class FollowersFragment : Fragment() {
 
     private lateinit var binding: FragmentFollowersBinding
 
-    private lateinit var viewModel: FollowersViewModel
-
-    private val detailViewModel by viewModels<DetailViewModel>{
+    private val viewModel by viewModels<FollowersViewModel>{
         ViewModelFactory.getInstance(requireActivity())
     }
 

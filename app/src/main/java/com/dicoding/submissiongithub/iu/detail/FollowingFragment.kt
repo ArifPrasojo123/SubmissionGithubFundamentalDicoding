@@ -16,9 +16,7 @@ class FollowingFragment : Fragment() {
 
     private lateinit var binding: FragmentFollowingBinding
 
-    private lateinit var viewModel: FollowingViewModel
-
-    private val detailViewModel by viewModels<DetailViewModel>{
+    private val viewModel by viewModels<FollowingViewModel>{
         ViewModelFactory.getInstance(requireActivity())
     }
 

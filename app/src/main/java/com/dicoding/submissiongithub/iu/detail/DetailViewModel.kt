@@ -62,7 +62,7 @@ class DetailViewModel(private val userRepository: UserRepository) : ViewModel() 
                 username = _detailUser.value?.login.toString(),
                 avatarUrl = _detailUser.value?.avatarUrl
             )
-            userRepository.addFavorite(item = user)
+            userRepository.addFavorite(user)
         }
     }
 
@@ -72,7 +72,7 @@ class DetailViewModel(private val userRepository: UserRepository) : ViewModel() 
                 username = _detailUser.value?.login.toString(),
                 avatarUrl = _detailUser.value?.avatarUrl
             )
-            userRepository.deleteFavorite(item = user)
+            userRepository.deleteFavorite(user)
         }
     }
 
