@@ -14,11 +14,11 @@ class UserRepository(
         return UserDao.isUserIsExist(username)
     }
 
-    fun addFavorite(item: FavoriteUser) {
+    suspend fun addFavorite(item: FavoriteUser) {
         UserDao.insert(item)
     }
 
-    fun deleteFavorite(item: FavoriteUser) {
+    suspend fun deleteFavorite(item: FavoriteUser) {
         UserDao.delete(item)
     }
 

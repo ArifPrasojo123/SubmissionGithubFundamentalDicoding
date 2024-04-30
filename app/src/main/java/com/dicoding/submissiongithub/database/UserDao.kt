@@ -11,10 +11,10 @@ import androidx.room.Query
 interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(item: FavoriteUser)
+    suspend fun insert(item: FavoriteUser)
 
     @Delete
-    fun delete(item: FavoriteUser)
+    suspend fun delete(item: FavoriteUser)
 
     @Query("SELECT * FROM FavoriteUser")
     fun getFavoriteUser(): LiveData<List<FavoriteUser>>

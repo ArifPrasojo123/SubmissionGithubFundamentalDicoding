@@ -63,6 +63,7 @@ class DetailViewModel(private val userRepository: UserRepository) : ViewModel() 
                 avatarUrl = _detailUser.value?.avatarUrl
             )
             userRepository.addFavorite(user)
+            _isFavorite.postValue(true)
         }
     }
 
@@ -73,6 +74,7 @@ class DetailViewModel(private val userRepository: UserRepository) : ViewModel() 
                 avatarUrl = _detailUser.value?.avatarUrl
             )
             userRepository.deleteFavorite(user)
+            _isFavorite.postValue(false)
         }
     }
 
